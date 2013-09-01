@@ -28,6 +28,25 @@
         }
 		*/
 		
+		var socket = new WebSocket("ws://localhost:8888/ws");
+		
+		socket.onopen = function(){  
+			console.log("client connected"); 
+		}; 
+ 
+		socket.onmessage = function (message) {
+			console.log("receiving: " + message.data);
+		};
+
+		socket.onclose = function(){
+			console.log("client disconnected"); 
+		};
+
+		sendMessage = function(message) {
+			socket.send(message);
+		};
+	  
+		
 		var currentLat = 0
 		var currentLng = 0
 		
@@ -75,6 +94,7 @@
 				setMarker(map, event.latLng.lat(), event.latLng.lng())				
 				var title = "<b>Current location:</b>" + event.latLng.lat() + "," + event.latLng.lng();
 				document.getElementById('current_position_title').innerHTML = "<B><h2>"+title+"</h2></B>"
+				sendMessage("Client#Location#"+event.latLng.lat() + "," + event.latLng.lng())
 			});
 			
 			showUUID() ;
