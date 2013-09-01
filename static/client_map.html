@@ -92,7 +92,7 @@
 
 			google.maps.event.addListener(map, 'click', function( event ){
 				setMarker(map, event.latLng.lat(), event.latLng.lng())				
-				var title = "<b>Current location:</b>" + event.latLng.lat() + "," + event.latLng.lng();
+				var title = "<b>Current location:</b> (" + event.latLng.lat() + "," + event.latLng.lng() + ")";
 				document.getElementById('current_position_title').innerHTML = "<B><h2>"+title+"</h2></B>"
 				sendMessage("Client#Location#"+event.latLng.lat() + "," + event.latLng.lng())
 			});
