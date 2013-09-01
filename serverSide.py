@@ -16,9 +16,13 @@ log = logging.getLogger(__name__)
 WEBSOCKS = []
 
 ###
-class IndexHandler(tornado.web.RequestHandler):
+class AdminHandler(tornado.web.RequestHandler):
     def get(self):
-        self.redirect("/static/user_map.html")
+        self.redirect("/static/admin_map.html")
+        
+class UserHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.redirect("/static/client_map.html")
  
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
     def open(self):
@@ -91,7 +95,8 @@ if __name__ == "__main__":
     tornado.options.parse_command_line()
     app = tornado.web.Application(
         handlers=[
-            (r"/", IndexHandler),
+            (r"/", UserHandler),
+            (r"/admin", AdminHandler),
             (r"/ws", WebSocketHandler),
         ],
 		**settings
