@@ -49,6 +49,7 @@
 		
 		var currentLat = 0
 		var currentLng = 0
+		var UID = 0
 		
 		function setMarker(map, latitude, longitude) {
 			var point = new google.maps.LatLng(latitude, longitude),
@@ -76,7 +77,7 @@
 		}
 		
 		function showUUID() {
-			var UID = generateUUID()
+			UID = generateUUID()
 			document.getElementById('uuid').innerHTML = "<B>User Unique ID: "+UID+"</B>"
 		}
 
@@ -94,7 +95,7 @@
 				setMarker(map, event.latLng.lat(), event.latLng.lng())				
 				var title = "<b>Current location:</b> (" + event.latLng.lat() + "," + event.latLng.lng() + ")";
 				document.getElementById('current_position_title').innerHTML = "<B><h2>"+title+"</h2></B>"
-				sendMessage("Client#Location#"+event.latLng.lat() + "," + event.latLng.lng())
+				sendMessage("User"+"#" + UID + "#" + "Location" + "#"+event.latLng.lat() + ";" + event.latLng.lng())
 			});
 			
 			showUUID() ;

@@ -48,11 +48,12 @@ class BusSideClient(object):
                 print 'Current Position', currentLocation
                 
                 positionMessage = '%.15f;%.15f' % (position[0], position[1])
-                message = CommMessage('BUS', 'Position', positionMessage)
+                message = CommMessage('BUS', "0", 'Position', positionMessage)
                 
                 self.client.send(message.toString())
 
                 time.sleep(3)
+                
         finally:
             self.terminate()
             

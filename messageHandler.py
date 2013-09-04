@@ -8,14 +8,19 @@ from position import Position
 
 class CommMessage(object):
     
-    def __init__(self, src, commandType, commandData):
-        self._src = src
+    def __init__(self, srcType, srcName, commandType, commandData):
+        self._srcType = srcType
+        self._srcName = srcName
         self._commandType = commandType
         self._commandData = commandData
 
     @property
-    def Source(self):
-        return self._src
+    def SourceType(self):
+        return self._srcType
+        
+    @property
+    def SourceName(self):
+        return self._srcName       
     
     @property
     def CommandType(self):
@@ -24,20 +29,17 @@ class CommMessage(object):
     @property
     def CommandData(self):
         return self._commandData
-        
-    #def parse(self, message):
-    #    self._src, self._commandType, self._commandData = message.split('#')
-        
+           
     @classmethod
     def parse(cls, message):
-        src, commandType, commandData = message.split('#')
-        return cls(src, commandType, commandData)
+        srcType, srcName, commandType, commandData = message.split('#')
+        return cls(srcType, srcName, commandType, commandData)
         
     def toString(self):
-        return "%s#%s#%s" % (self._src, self._commandType, self._commandData)
+        return "%s#%s#%s#%s" % (self._srcType, self._srcName, self._commandType, self._commandData)
                 
         
-    
+'''    
 class MessageHandler:
     @classmethod
     def invoke(cls, message):
@@ -68,4 +70,4 @@ class BusHandler():
     def Position(self):
         return self.currentPosition
     
- 
+''' 

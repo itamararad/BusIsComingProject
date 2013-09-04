@@ -2015,7 +2015,12 @@ if (!Array.prototype.indexOf) {
     $(document).ready(function(){
       sock = new WebSocket("ws://../ws");
       sock = new WebSocket("ws://localhost:8888/ws");
-      sock.onopen = function(){ console.log("Connected websocket"); };
+      
+	  sock.onopen = function(){ 
+		console.log("Connected websocket"); 
+		sock.send("ADMIN#0#0#0");
+	  };
+	  
       sock.onerror = function(){ console.log("Websocket error"); };
 
       sock.onmessage = function(evt){
